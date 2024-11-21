@@ -1,7 +1,16 @@
-name: Build container
-
 on:
   workflow_call:
+    inputs:
+     container_name:
+        description: The name of the container to release a package as.
+        required: false
+        type: string
+        default: ${{ github.repository }}
+     container_tag:
+       description: The name of the container to release a package as.
+       required: false
+       type: string
+       default: gh-actions-test
     outputs:
       container_sha256:
         description: "SHA256 for the container build in this job"
@@ -33,4 +42,4 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/guidion-digital/dbt.guidion.io:gh-actions-test
+            ghcr.io/${{ inputs.container_name }}:${{ inputs.container_tag }}
