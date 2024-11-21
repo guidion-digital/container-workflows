@@ -1,11 +1,16 @@
-name: Build container
-
 on:
   workflow_call:
-    outputs:
-      container_sha256:
-        description: "SHA256 for the container build in this job"
-        value: ${{ jobs.build-container.outputs.container_sha256 }}
+    inputs:
+     container_image_name:
+        description: The name of the container to release a package as.
+        required: false
+        type: string
+        default: ${{ github.repository }}
+     container_tag:
+       description: The name of the container to release a package as.
+       required: false
+       type: string
+       default: ${{ github.sha }}
 
 
 jobs:
@@ -14,8 +19,6 @@ jobs:
     permissions:
         contents: read
         packages: write
-    outputs:
-      container_sha256: ${{ steps.build-and-push.outputs.digest }}
     steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -33,4 +36,4 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/guidion-digital/dbt.guidion.io:gh-actions-test
+            ghcr.io/${{ inputs.container_image_name }}:${{ inputs.container_tag }}
