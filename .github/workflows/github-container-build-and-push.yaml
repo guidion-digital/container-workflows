@@ -1,7 +1,7 @@
 on:
   workflow_call:
     inputs:
-     container_name:
+     container_image_name:
         description: The name of the container to release a package as.
         required: false
         type: string
@@ -36,4 +36,4 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/${{ inputs.container_name }}:${{ inputs.container_tag }}
+            ghcr.io/${{ inputs.container_image_name }}:${{ inputs.container_tag }}
