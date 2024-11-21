@@ -7,7 +7,7 @@ on:
 
 jobs:
   release-tag:
-    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag.yaml@v1
+    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag.yaml@v2
     permissions:
       contents: write
     with:
@@ -15,7 +15,7 @@ jobs:
 
   retagging:
     needs: release-tag
-    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag-update-latest-major.yaml@v1
+    uses: guidion-digital/release-workflows/.github/workflows/github-release-tag-update-latest-major.yaml@v2
     permissions:
       contents: write
     with:
