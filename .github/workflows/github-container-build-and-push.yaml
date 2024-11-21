@@ -11,10 +11,6 @@ on:
        required: false
        type: string
        default: ${{ github.sha }}
-    # outputs:
-    #   container_sha256:
-    #     description: "SHA256 for the container build in this job"
-    #     value: ${{ jobs.build-container.outputs.container_sha256 }}
 
 
 jobs:
@@ -23,8 +19,6 @@ jobs:
     permissions:
         contents: read
         packages: write
-    # outputs:
-    #   container_sha256: ${{ steps.build-and-push.outputs.digest }}
     steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
